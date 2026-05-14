@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Blueprint dot grid pattern used in hero */
+  .dot-grid {
+    background-image: radial-gradient(#2a3d55 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Amber glow effect for CTA elements */
+  .amber-glow {
+    box-shadow: 0 0 32px rgba(245, 158, 11, 0.2);
+  }
+
+  /* Subtle card hover lift */
+  .card-hover {
+    @apply transition-transform duration-200 ease-out;
+  }
+  .card-hover:hover {
+    @apply -translate-y-1;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
