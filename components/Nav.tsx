@@ -21,11 +21,10 @@ export default function Nav() {
     >
       <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
         {/* Wordmark */}
-        <a href="#" className="flex items-center gap-2 group" aria-label="Menodi startsida">
+        <a href="#" className="group" aria-label="Menodi startsida">
           <span className="text-xl font-bold tracking-tight text-white">
             Menodi
           </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-menodi-amber animate-pulse-slow" />
         </a>
 
         {/* CTA */}

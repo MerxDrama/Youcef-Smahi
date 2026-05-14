@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Familjen_Grotesk } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({
+// Familjen Grotesk — the Menodi brand typeface
+const familjenGrotesk = Familjen_Grotesk({
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-familjen',
 })
 
 export const metadata: Metadata = {
@@ -54,11 +56,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="sv" className={`${inter.variable} scroll-smooth`}>
+    <html lang="sv" className={`${familjenGrotesk.variable} scroll-smooth`}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <meta name="theme-color" content="#1a2332" />
+        <meta name="theme-color" content="#0A1F44" />
       </head>
       <body className="font-sans bg-menodi-dark text-white">{children}</body>
     </html>

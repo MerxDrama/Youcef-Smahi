@@ -29,7 +29,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null)
 
   return (
-    <section id="fragor" className="bg-white">
+    <section id="fragor" className="bg-menodi-bone">
       <div className="mx-auto max-w-3xl px-6 py-20 md:py-28">
 
         {/* Header */}
@@ -52,7 +52,7 @@ export default function FAQ() {
                 className={`border rounded-2xl transition-colors duration-150 ${
                   isOpen
                     ? 'border-menodi-amber/40 bg-menodi-cream'
-                    : 'border-menodi-cream-dark bg-white hover:border-menodi-muted/40'
+                    : 'border-menodi-cream-dark bg-menodi-bone hover:border-menodi-muted/40'
                 }`}
               >
                 <button

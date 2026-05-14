@@ -58,7 +58,7 @@ export default function Problem() {
           {scenarios.map((s, i) => (
             <div
               key={i}
-              className="card-hover bg-white rounded-2xl p-7 border border-menodi-cream-dark shadow-sm"
+              className="card-hover bg-menodi-bone rounded-2xl p-7 border border-menodi-cream-dark shadow-sm"
             >
               {/* Time badge */}
               <div className="flex items-center gap-3 mb-6">

@@ -89,7 +89,7 @@ export default function Pricing() {
               className={`relative rounded-2xl overflow-hidden flex flex-col ${
                 plan.highlighted
                   ? 'bg-menodi-dark border-2 border-menodi-amber shadow-2xl scale-[1.02] md:scale-105'
-                  : 'bg-white border border-menodi-cream-dark shadow-sm'
+                  : 'bg-menodi-bone border border-menodi-cream-dark shadow-sm'
               }`}
             >
               {/* Badge */}
