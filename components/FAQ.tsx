@@ -4,70 +4,74 @@ import { useState } from 'react'
 
 const faqs = [
   {
-    q: 'Funkar det verkligen på svenska — riktig svenska?',
-    a: 'Ja. Menodi är byggt från grunden för svenska hantverkare. Det förstår regionala dialekter, branschtermer som "stambyte", "tätskikt" och "VVS-jour", och svarar med ett naturligt, korrekt svenska — inte maskinöversatt engelska. Vi testar kontinuerligt mot verkliga samtal i branschen.',
-  },
-  {
-    q: 'Vad kostar det om jag bara har 10 samtal i månaden?',
-    a: 'Miniplan på 499 kr/mån inkluderar 50 minuters samtalstid. Om du har 10 samtal à 3 minuter använder du 30 minuter — fortfarande 20 i reserv. Har du färre samtal betalar du ändå det fasta priset, men det är fortfarande billigare än att förlora ett enda jobb till en konkurrent.',
+    q: 'Funkar det verkligen på riktig svenska?',
+    a: 'Ja. Menodi är förtränad på svensk hantverkar­vokabulär — inte maskinöversatt engelska. Den hanterar dialekter, branschtermer som "stambyte", "tätskikt", "VVS-jour", och svarar med naturlig prosodi. Vi testar mot riktiga inkommande samtal varje vecka.',
   },
   {
     q: 'Vad händer om Menodi inte förstår kunden?',
-    a: 'Menodi eskalerar direkt. Om ett samtal inte kan hanteras ordentligt — för konstiga frågor, dialekt som inte känns igen, eller om kunden uttryckligen vill prata med en person — kopplas samtalet vidare till dig, eller ett meddelande skickas för återuppringning. Du bestämmer eskaleringsflödet.',
+    a: 'Hybrid AI + människa är inbyggt. Om samtalet inte kan kvalificeras säkert — konstig dialekt, juridiska frågor, akuta jourärenden — eskalerar Menodi direkt till en verklig människa hos oss, eller vidare till dig. Du bestämmer flödet.',
+  },
+  {
+    q: 'Vad kostar det om jag bara har 10 samtal i månaden?',
+    a: 'Mini-planen på 499 kr/mån täcker 50 minuter. 10 samtal à 3 minuter = 30 min använt. Du betalar fast pris även om du är under, men ett enda missat jobb hos en konkurrent kostar mer än årspremien.',
   },
   {
     q: 'Vad händer med mitt nuvarande telefonnummer?',
-    a: 'Ingenting ändras för dig. Du ställer in vidarekoppling från ditt vanliga mobilnummer till Menodis linje — precis som om du vidarekopplar till ett annat mobil. Kunder ringer ditt nummer, Menodi svarar. Ingen hårdvara, inget nytt SIM-kort, ingen ny operatör.',
+    a: 'Ingenting förändras för dig. Du vidarekopplar ditt vanliga mobilnummer till Menodis linje — samma princip som att vidarekoppla till en kollega. Inget nytt SIM, ingen operatörsbyte, ingen hårdvara.',
   },
   {
-    q: 'Kan jag testa innan jag bestämmer mig?',
-    a: 'Ja — boka en 15-minutersdemo så visar vi hur det funkar med ditt företagsnamn och din typ av arbete. Du slipper sitta igenom en säljpresentation. Vi kör ett testsamtal live, du ser resultatet direkt, och sedan bestämmer du.',
+    q: 'Kan ni integrera med vårt befintliga CRM?',
+    a: 'Vi stödjer Pipedrive, HubSpot, Fortnox och Zapier/n8n out-of-the-box. På Max-planen bygger vi custom-integrationer mot ert eget system. Boka en demo så går vi igenom er stack.',
+  },
+  {
+    q: 'Hur säkert är det? GDPR?',
+    a: 'Data lagras i EU. Vi följer GDPR och svenska bokföringsregler. Inspelningar raderas efter 30 dagar om du inte aktivt sparar dem. PUB-avtal skickas vid signup.',
   },
 ]
 
 export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(null)
+  const [open, setOpen] = useState<number | null>(0)
 
   return (
-    <section id="fragor" className="bg-menodi-bone">
-      <div className="mx-auto max-w-3xl px-6 py-20 md:py-28">
+    <section id="fragor" className="bg-menodi-soft py-20 md:py-28">
+      <div className="mx-auto max-w-3xl px-6">
 
         {/* Header */}
         <div className="mb-12">
-          <p className="text-menodi-amber text-sm font-semibold tracking-widest uppercase mb-4">
-            Vanliga frågor
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-menodi-gold mb-4">
+            07 · Frågor &amp; svar
           </p>
-          <h2 className="text-[clamp(1.75rem,4vw,3rem)] font-bold text-menodi-dark leading-tight">
+          <h2 className="font-serif text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.1] tracking-tight text-menodi-ink text-balance">
             Det du undrar — och det raka svaret.
           </h2>
         </div>
 
         {/* Accordion */}
-        <div className="space-y-3">
+        <div className="space-y-2.5">
           {faqs.map((faq, i) => {
             const isOpen = open === i
             return (
               <div
                 key={i}
-                className={`border rounded-2xl transition-colors duration-150 ${
+                className={`rounded-2xl border transition-all duration-200 ${
                   isOpen
-                    ? 'border-menodi-amber/40 bg-menodi-cream'
-                    : 'border-menodi-cream-dark bg-menodi-bone hover:border-menodi-muted/40'
+                    ? 'border-menodi-gold/40 bg-menodi-surface shadow-[0_8px_24px_-12px_rgba(0,0,0,0.06)]'
+                    : 'border-menodi-border bg-menodi-bg hover:border-menodi-border-strong'
                 }`}
               >
                 <button
-                  className="w-full flex items-start justify-between gap-4 px-6 py-5 text-left"
+                  className="w-full flex items-start justify-between gap-5 px-6 py-5 text-left focus-gold rounded-2xl"
                   onClick={() => setOpen(isOpen ? null : i)}
                   aria-expanded={isOpen}
                 >
-                  <span className="font-semibold text-menodi-dark text-base leading-snug pr-2">
+                  <span className="font-serif text-lg text-menodi-ink leading-snug">
                     {faq.q}
                   </span>
                   <span
-                    className={`shrink-0 w-6 h-6 rounded-full border flex items-center justify-center transition-all duration-200 mt-0.5 ${
+                    className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-200 mt-0.5 ${
                       isOpen
-                        ? 'bg-menodi-amber border-menodi-amber text-menodi-dark rotate-45'
-                        : 'border-menodi-cream-dark text-menodi-muted-dark'
+                        ? 'bg-menodi-gold text-white rotate-45'
+                        : 'bg-menodi-soft text-menodi-muted'
                     }`}
                   >
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -77,11 +81,11 @@ export default function FAQ() {
                 </button>
 
                 <div
-                  className={`overflow-hidden transition-all duration-200 ${
-                    isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                  className={`overflow-hidden transition-all duration-300 ${
+                    isOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'
                   }`}
                 >
-                  <p className="px-6 pb-5 text-menodi-muted-dark leading-relaxed text-base">
+                  <p className="px-6 pb-6 text-menodi-body leading-relaxed text-pretty">
                     {faq.a}
                   </p>
                 </div>
@@ -90,13 +94,13 @@ export default function FAQ() {
           })}
         </div>
 
-        {/* Overflow prompt */}
-        <p className="mt-10 text-center text-menodi-muted-dark text-sm">
-          Annan fråga?{' '}
-          <a href="#demo" className="text-menodi-dark font-semibold hover:underline">
-            Ställ den i demot
+        {/* Have a question */}
+        <p className="text-center text-sm text-menodi-muted mt-10">
+          Hittar du inte svaret?{' '}
+          <a href="#demo" className="text-menodi-gold-dark font-medium hover:underline">
+            Ställ frågan i demot
           </a>{' '}
-          — vi svarar på allting.
+          — vi svarar på allt.
         </p>
       </div>
     </section>

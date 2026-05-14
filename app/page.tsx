@@ -1,8 +1,10 @@
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
 import Problem from '@/components/Problem'
+import Solution from '@/components/Solution'
 import HowItWorks from '@/components/HowItWorks'
-import WhyMenodi from '@/components/WhyMenodi'
+import Integrations from '@/components/Integrations'
+import SocialProof from '@/components/SocialProof'
 import Pricing from '@/components/Pricing'
 import FAQ from '@/components/FAQ'
 import FinalCTA from '@/components/FinalCTA'
@@ -15,8 +17,10 @@ export default function Home() {
       <main>
         <Hero />
         <Problem />
+        <Solution />
         <HowItWorks />
-        <WhyMenodi />
+        <Integrations />
+        <SocialProof />
         <Pricing />
         <FAQ />
         <FinalCTA />

@@ -2,39 +2,112 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+/* ------------------------------------------------------------------
+   Font variables
+   --font-switzer / --font-recoleta come from Fontshare <link> in layout
+   --font-kalam / --font-dm-mono come from next/font/google in layout
+   ------------------------------------------------------------------ */
+:root {
+  --font-switzer: 'Switzer', 'Switzer Fallback', system-ui, sans-serif;
+  --font-recoleta: 'Recoleta', 'Georgia', serif;
+  --font-sans: var(--font-switzer);
+  --font-serif: var(--font-recoleta);
 
+  /* Gold tokens — used as CSS vars too for non-Tailwind contexts */
+  --gold: #C9A227;
+  --gold-hover: #A88520;
+  --gold-soft: rgba(201, 162, 39, 0.10);
+  --gold-glow: rgba(201, 162, 39, 0.30);
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
   body {
     @apply antialiased;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'ss01', 'cv02';
+  }
+  /* Selection */
+  ::selection { background: var(--gold-soft); color: #0A0A0A; }
+
+  /* Serif headings utility */
+  .font-serif { font-family: var(--font-recoleta); font-weight: 600; }
+
+  /* ----------- Decorative utilities ----------- */
+
+  /* Radial gold intro — Gamma-style premium center glow.
+     Pair with .radial-mask to limit area. */
+  .radial-gold {
+    background:
+      radial-gradient(closest-side, rgba(201,162,39,0.35) 0%,
+                                    rgba(201,162,39,0.10) 45%,
+                                    transparent 70%);
   }
 
-  /* Blueprint dot grid — dots are a lighter shade of the Midnight Navy */
-  .dot-grid {
-    background-image: radial-gradient(#1C3568 1px, transparent 1px);
-    background-size: 32px 32px;
+  /* Animated radial ring — subtle decoration */
+  .ring-pulse {
+    position: relative;
+  }
+  .ring-pulse::before,
+  .ring-pulse::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    border: 1px solid var(--gold);
+    opacity: 0;
+    animation: ring-out 3.4s ease-out infinite;
+  }
+  .ring-pulse::after { animation-delay: 1.7s; }
+  @keyframes ring-out {
+    0%   { transform: scale(0.6); opacity: 0.55; }
+    80%  { opacity: 0; }
+    100% { transform: scale(1.6); opacity: 0; }
   }
 
-  /* Champagne gold glow for CTA elements (#C9A227) */
-  .amber-glow {
-    box-shadow: 0 0 32px rgba(201, 162, 39, 0.25);
+  /* Faint dotted grid for hero */
+  .dot-grid-soft {
+    background-image: radial-gradient(rgba(201,162,39,0.10) 1px, transparent 1px);
+    background-size: 28px 28px;
   }
 
-  /* Subtle card hover lift */
-  .card-hover {
-    @apply transition-transform duration-200 ease-out;
-  }
-  .card-hover:hover {
-    @apply -translate-y-1;
+  /* Gold shimmer text — applied to highlighted words */
+  .text-gold-shimmer {
+    background-image: linear-gradient(
+      90deg,
+      #A88520 0%,
+      #C9A227 35%,
+      #E5BE3F 50%,
+      #C9A227 65%,
+      #A88520 100%
+    );
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gold-shimmer 8s linear infinite;
   }
 
-  /* Respect reduced-motion preference for all animations (from brand spec) */
+  /* Card lift on hover */
+  .card-lift {
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .card-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px -20px rgba(0,0,0,0.10);
+  }
+
+  /* Gold focus ring — accessibility */
+  .focus-gold:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    * {
+    *, *::before, *::after {
       animation: none !important;
       transition-duration: 0.01ms !important;
     }
@@ -42,7 +115,6 @@
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  .text-balance { text-wrap: balance; }
+  .text-pretty  { text-wrap: pretty; }
 }
